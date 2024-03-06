@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  css: ['~/assets/styles/main.scss'],
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
@@ -13,7 +12,8 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    'nuxt-svgo'
     //...
   ],
   vite: {
@@ -22,5 +22,10 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
+    css: {
+			preprocessorOptions: {
+				scss: {additionalData: `@import "@/assets/styles/main.scss";`}
+			}
+		}
   },
 })

@@ -11,8 +11,8 @@ theme: {
       light: {
         dark: false,
         colors: {
-          primary: '#032541',
-          secondary: '#b9b9b9'
+          primary: '#1971C2',
+          secondary: '#E5E5E5'
         }
       },
     },
