@@ -1,5 +1,5 @@
 <template>
-	<v-img :src="imageUrl" v-bind="attrs" v-on="listeners" />
+	<v-img :src="imageUrl" v-bind="$attrs" />
 </template>
 
 <script setup>
