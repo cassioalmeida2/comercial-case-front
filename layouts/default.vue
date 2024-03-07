@@ -20,7 +20,8 @@
 			</div>
     </v-navigation-drawer>
     <v-main>
-      <v-container class="py-8 px-6" fluid>
+      <v-container class="py-8 px-6">
+				<slot />
       </v-container>
     </v-main>
   </v-app>
@@ -36,7 +37,7 @@
   const drawer = ref(null)
 	
 	const items = ref([
-		{icon: 'Link', text: 'Associar Produtos' },
+		{icon: 'Link', text: 'Vincular' },
 		{icon: 'Customers', text: 'Clientes' },
 		{icon: 'Product', text: 'Produtos' },
 	])
