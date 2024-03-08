@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+	import { ref } from 'vue'
 	import dataStone from '@/assets/images/data-stone.png';
 	import IonImage from '@/components/ions/IonImage.vue'
 	import IonDivider from '@/components/ions/IonDivider.vue'
