@@ -4,13 +4,16 @@
 			<template v-slot:activator="{ activatorProps }">
 				<atom-button v-bind="activatorProps" @click="openDialog"> 
 					<SvgoPlus class="pa-0 mr-1 icon-default" />
-					<span ref="produto">Novo produto</span>
+					<span ref="produto">Novo cliente</span>
 				</atom-button>
 			</template>
 			<div class="full-width bg-white rounded pa-6">
-				<h2 class="text-h5 text-primary">Novo produto</h2>
+				<h2 class="text-h5 text-primary">Novo cliente</h2>
 				<atom-form class="mt-4">
-					<atom-textfield label="Nome" :value="formValues.name" @input="updateInputValue" />
+					<atom-textfield label="Nome" name="name" :value="formValues.name" @input="updateInputValue" />
+					<atom-textfield label="Documento" name="document" :value="formValues.document" @input="updateInputValue" />
+					<atom-textfield label="Telefone" name="phone" :value="formValues.phone" @input="updateInputValue" />
+					<atom-textfield label="Email" name="email" type="email" :value="formValues.email" @input="updateInputValue" />
 					<atom-switch label="Ativo" :value="formValues.active" @change="updateSwitch" />
 					<div class="d-flex justify-end">
 						<atom-button @click="closeDialog" color="secondary" class="mr-2"> 
@@ -27,7 +30,7 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import { ref, defineEmits } from 'vue'
 	import AtomDialog from '@/components/atoms/AtomDialog.vue'
 	import AtomButton from '@/components/atoms/AtomButton.vue'
 	import AtomTextfield from '@/components/atoms/AtomTextfield.vue'
@@ -37,15 +40,18 @@
 	let showDialog = ref(false)
 	let dialog = ref(null)
 	let name = ref()
-	let editProduct = ref(null)
+	let editCustomer = ref(null)
 	let editMode = false
 
 	let formValues = ref({
 		name: '',
+    document: '',
+    phone: '',
+    email: '',
 		active: true
 	})
 
-	const emit = defineEmits(['registerProduct', 'editProduct'])
+	const emit = defineEmits(['registerCustomer', 'editCustomer'])
 
 	const labelButton = computed(() => {
 		return editMode ? 'Atualizar' : 'Cadastrar'
@@ -62,28 +68,34 @@
 
 	const setInitialValueForm = () => {
 		formValues = ref({
-			name: '',
-			active: true
+      name: '',
+      document: '',
+      phone: '',
+      email: '',
+      active: true
 		})
 	}
 
 	const register = () => {
 		if(editMode){
-			editProduct.name = formValues.value.name
-			editProduct.active = formValues.value.active
-			emit('editProduct', editProduct)
+			editCustomer.name = formValues.value.name
+			editCustomer.active = formValues.value.active
+			emit('editCustomer', editCustomer)
 			editMode = false 
 		}else {
-			emit('registerProduct', formValues.value)
+			emit('registerCustomer', formValues.value)
 		}
 		closeDialog()
 	}
 
-	const openDialogProductEdit = (product) => {
-		editProduct = product
+	const openDialogCustomerEdit = (customer) => {
+		editCustomer = customer
 		editMode = true
-		formValues.value.name = product.name
-		formValues.value.active = product.active
+		formValues.value.name = customer.name
+    formValues.value.document = customer.document
+    formValues.value.phone = customer.phone
+    formValues.value.email = customer.email
+		formValues.value.active = customer.active
 		openDialog()
 	}
 
@@ -97,12 +109,12 @@
 	
 
 	defineExpose({
-		openDialogProductEdit
+		openDialogCustomerEdit
 	})
 </script>
 
 <style lang="scss" scoped>
-.molecule-product-form {
+.molecule-customer-form {
 
 }
 </style>

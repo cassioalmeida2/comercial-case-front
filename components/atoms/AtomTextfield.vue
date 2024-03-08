@@ -1,10 +1,11 @@
 <template>
 	<div> 
-		<ion-textfield :label="label" :value="value" :required="required" variant="outlined" type="type" :placeholder="placeholder" @input="updateInputValue" />
+		<ion-textfield :label="label" v-model="valueDefault" :required="required" variant="outlined" :type="type" :placeholder="placeholder" @input="updateInputValue" />
 	</div>
 </template>
 
 <script setup>
+	import { ref, defineEmits } from 'vue'
 	import IonTextfield from '@/components/ions/IonTextfield.vue'
 	
 	const props = defineProps({
@@ -37,6 +38,12 @@
 			required: false,
 			default: '',
 		},
+
+		name: {
+			type: String,
+			required: false,
+			default: '',
+		},
 		
 		rules: {
 			type: Array,
@@ -47,8 +54,11 @@
 
 	const emit = defineEmits(['input'])
 
+	const valueDefault = ref(props.value)
+
 	const updateInputValue = (newValue) => {
-		emit('input', newValue)
+		let inputValue = {field: props.name, value: newValue}
+		emit('input', inputValue)
 	}
 
 </script>
