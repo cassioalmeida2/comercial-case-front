@@ -2,7 +2,7 @@
 	<v-data-table-virtual v-bind="$attrs">
 		<template v-for="slot in creatorSlots" v-slot:[`item.${slot.field}`]="{ value }">
 			<slot :name="slot.field" :item="value" />
-    </template>
+		</template>
 	</v-data-table-virtual>
 </template>
 
