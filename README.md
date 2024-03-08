@@ -2,6 +2,8 @@
 
 O servidor será iniciado em `http://localhost:3000`
 <br >
+O projeto se encontra no Amplify da AWS para melhor visualização do Case junto ao código neste link: https://master.dmlszvv1hv4kf.amplifyapp.com/
+<br >
 OBS: A versão do node que foi utilizada para rodar o projeto é a v20.11.1
 <br>
 
