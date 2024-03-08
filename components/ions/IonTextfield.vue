@@ -1,5 +1,7 @@
 <template>
-	<v-text-field v-bind="$attrs" v-model="value" @input="updateInputValue" />
+<div>
+	<v-text-field v-bind="$attrs" @input="updateInputValue" />
+</div>
 </template>
 
 <script setup>
