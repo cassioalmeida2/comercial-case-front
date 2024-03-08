@@ -4,7 +4,7 @@
 			<template v-slot:activator="{ activatorProps }">
 				<atom-button v-bind="activatorProps" @click="openDialog"> 
 					<SvgoPlus class="pa-0 mr-1 icon-default" />
-					<span ref="produto">Novo cliente</span>
+					<span>Novo cliente</span>
 				</atom-button>
 			</template>
 			<div class="full-width bg-white rounded pa-6">

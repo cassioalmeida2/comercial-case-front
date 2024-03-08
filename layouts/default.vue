@@ -40,8 +40,8 @@
 	
 	const items = ref([
 		{icon: 'Product', text: 'Produtos', path: '/' },
-		{icon: 'Link', text: 'Vincular', path: 'link-products' },
 		{icon: 'Customers', text: 'Clientes', path: 'customers' },
+		{icon: 'Link', text: 'Vincular', path: 'link-products' },
 	])
 
 	const goToPage = (path) => {

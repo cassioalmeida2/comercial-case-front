@@ -4,13 +4,13 @@
 			<template v-slot:activator="{ activatorProps }">
 				<atom-button v-bind="activatorProps" @click="openDialog"> 
 					<SvgoPlus class="pa-0 mr-1 icon-default" />
-					<span ref="produto">Novo produto</span>
+					<span>Novo produto</span>
 				</atom-button>
 			</template>
 			<div class="full-width bg-white rounded pa-6">
 				<h2 class="text-h5 text-primary">Novo produto</h2>
 				<atom-form class="mt-4">
-					<atom-textfield label="Nome" :value="formValues.name" @input="updateInputValue" />
+					<atom-textfield label="Nome" name="name" :value="formValues.name" @input="updateInputValue" />
 					<atom-switch label="Ativo" :value="formValues.active" @change="updateSwitch" />
 					<div class="d-flex justify-end">
 						<atom-button @click="closeDialog" color="secondary" class="mr-2"> 
@@ -36,7 +36,6 @@
 
 	let showDialog = ref(false)
 	let dialog = ref(null)
-	let name = ref()
 	let editProduct = ref(null)
 	let editMode = false
 

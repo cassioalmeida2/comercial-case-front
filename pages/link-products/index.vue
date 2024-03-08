@@ -1,38 +1,49 @@
 <template>
   <div>
-		<template-products :content="content" @registerProduct="registerProduct" @deleteProduct="deleteProduct" @editProduct="editProduct" />
+		<template-links :content="content" @registerLink="registerLink" @deleteLink="deleteLink" @editLink="editLink" />
 	</div>
 </template>
 
 <script setup>
 	import { ref, onMounted } from 'vue'
-	import TemplateProducts from '@/components/templates/TemplateProducts.vue'
+	import TemplateLinks from '@/components/templates/TemplateLinks.vue'
 	import { useRouter } from 'vue-router'
+	import { useLinksStore } from '/store/links.js'
+	import { useCustomersStore } from '/store/customers.js'
 	import { useProductsStore } from '/store/products.js'
 
 	const router = useRouter()
-	const store = useProductsStore()
+	const linksStore = useLinksStore()
+	const customersStore = useCustomersStore()
+	const productsStore = useProductsStore()
+
 	const content = ref({
+		links: [],
+		customers: [],
 		products: []
 	})
 
 	onMounted(() => {
-		store.checkProducts()
-		content.value.products = store.products
+		linksStore.checkLinks()
+		customersStore.checkCustomers()
+		productsStore.checkProducts()
+		content.value.links = linksStore.links
+		content.value.customers = customersStore.customers
+		content.value.products = productsStore.products
 	})
 
-	const registerProduct = async (product) => {
-		await store.addProduct(product)
-		content.value.products = store.products
+	const registerLink = async (link) => {
+		await linksStore.addLink(link)
+		content.value.links = linksStore.links
 	}
 
-	const deleteProduct = async (productId) => {
-		await store.deleteProduct(productId)
-		content.value.products = store.products
+	const deleteLink = async (linkId) => {
+		await linksStore.deleteLink(linkId)
+		content.value.links = linksStore.links
 	}
 
-	const editProduct = async (product) => {
-		await store.editProduct(product)
-		content.value.products = store.products
+	const editLink = async (link) => {
+		await linksStore.editLink(link)
+		content.value.links = linksStore.links
 	}
 </script>
